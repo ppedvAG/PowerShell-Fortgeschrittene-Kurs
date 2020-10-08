@@ -1,10 +1,16 @@
 ﻿[cmdletBinding()] #Benutze Powershell default Parameter
 Param(
+[Parameter(ParameterSetName="Manuell")]
 [string]$Logname = "Security",
+[Parameter(ParameterSetName="Manuell")]
 [string]$Computername = "localhost",
-[Parameter(Mandatory=$true)] #Parametereigenschaften wie zb Pflicht Parameter
+[Parameter(Mandatory=$true,ParameterSetName="Manuell")]
+[Parameter(Mandatory=$false,ParameterSetName="CSV")] #Parametereigenschaften wie zb Pflicht Parameter
 [int]$EventId,
-[int]$Newest = 5
+[Parameter(ParameterSetName="Manuell")]
+[int]$Newest = 5,
+[Parameter(Mandatory=$True,ParameterSetName="CSV")]
+[string]$Configpath
 )
 
 #Verbose also zusätzliche Ausgabe die bei angabe von -Verbose mit ausgegeben wird
